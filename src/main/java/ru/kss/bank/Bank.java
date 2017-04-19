@@ -59,15 +59,13 @@ public class Bank {
             throw new ClientNotExistsException("Client " + clientFrom.getName() + " doesn't exists in the Bank!", clientFrom);
 
         if (accountFrom.getSumm()<summ)
-            throw new NoSuchMoneyException("Account " + accountFrom.getAccountNumber() + " doesn't have enough money!", accountFrom);
+            throw new NoSuchMoneyException("Account " + accountFrom.getAccountNumber() + " doesn't have enough money!");
 
         if (!this.accounts.contains(accountTo))
             throw new AccountNotExistsException("Account "  + accountTo.getAccountNumber() + " doesn't exists in the Bank!", accountTo);
 
         if (!this.clients.contains(clientTo))
             throw new ClientNotExistsException("Client " + clientTo.getName() + " doesn't exists in the Bank!", clientTo);
-
-
 
         Operation operation = new Operation(accountFrom, accountTo, clientFrom, clientTo, summ, Calendar.getInstance());
         return this.operations.add(operation);

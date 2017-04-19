@@ -11,7 +11,9 @@ import ru.kss.clients.exceptions.ClientExistsException;
  * @author sk10271
  */
 public class App {
+
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(App.class);
+
     public static void main(String[] args){
         Bank bank = new Bank();
         Juridical juridical = new Juridical("Joyetech", false, "Vapes");

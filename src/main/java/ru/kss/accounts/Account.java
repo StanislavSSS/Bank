@@ -69,9 +69,9 @@ public class Account {
         return counter;
     }
 /*TODO*/
-    public boolean recalcSumm(int summ, Account account) throws NoSuchMoneyException {
+    public boolean recalcSumm(int summ) throws NoSuchMoneyException {
         if (this.summ<summ) {
-            throw new NoSuchMoneyException("Account " + this.accountNumber + " doesn't have enough money!", account);
+            throw new NoSuchMoneyException("Account " + this.accountNumber + " doesn't have enough money!");
         }
         else {
             this.summ = this.summ + summ;
