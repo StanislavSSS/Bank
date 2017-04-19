@@ -3,8 +3,8 @@ package ru.kss.clients;
 import ru.kss.accounts.Account;
 import ru.kss.accounts.exceptions.IncorrectAccountNumberException;
 
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.UUID;
 
 /**
@@ -16,7 +16,8 @@ public abstract class Client {
     private String name;
     private boolean resident;
     private Calendar serviceDateStart, serviceDateEnd;
-    private ArrayList<Account> accounts;
+    private boolean actual;
+    private HashSet<Account> accounts;
 
     public Client(String name, boolean resident) {
         counter++;
@@ -24,7 +25,8 @@ public abstract class Client {
         this.name = name;
         this.resident = resident;
         this.serviceDateStart = Calendar.getInstance();
-        this.accounts = new ArrayList<Account>();
+        this.accounts = new HashSet<Account>();
+        this.actual = true;
     }
 
     public void setResident(boolean resident) {
@@ -51,7 +53,7 @@ public abstract class Client {
         return serviceDateEnd;
     }
 
-    public ArrayList<Account> getAccounts() {
+    public HashSet<Account> getAccounts() {
         return accounts;
     }
 
@@ -69,7 +71,7 @@ public abstract class Client {
     }
 
     /*TODO*/
-    public boolean addAccounts(ArrayList<Account> accounts){
+    public boolean addAccounts(HashSet<Account> accounts){
         UUID clientid = getClientId();
 
         for (Account account:accounts){
@@ -88,6 +90,7 @@ public abstract class Client {
                 "\n, serviceDateStart=" + serviceDateStart +
                 "\n, serviceDateEnd=" + serviceDateEnd +
                 "\n, accounts=" + accounts +
+                "\n, actual=" + actual +
                 '}';
     }
 }

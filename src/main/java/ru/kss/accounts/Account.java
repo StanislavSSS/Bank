@@ -1,9 +1,7 @@
 package ru.kss.accounts;
 
-import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kss.accounts.exceptions.IncorrectAccountNumberException;
-import ru.kss.clients.Client;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +16,7 @@ public class Account {
     private Calendar openDate;
     private Date closeDate;
     private UUID ownerId, accountId;
+    private boolean actual;
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
 
     public Account(String accountNumber, Calendar openDate, UUID ownerId, UUID accountId) throws IncorrectAccountNumberException {
@@ -30,6 +29,7 @@ public class Account {
         this.openDate = openDate;
         this.ownerId = ownerId;
         this.accountId = UUID.randomUUID();
+        this.actual = true;
 
         logger.info("Account " + accountNumber + " was added!");
     }
@@ -66,6 +66,7 @@ public class Account {
                 "\n, closeDate=" + closeDate +
                 "\n, ownerId=" + ownerId +
                 "\n, accountId=" + accountId +
+                "\n, actual=" + actual +
                 '}';
     }
 }
