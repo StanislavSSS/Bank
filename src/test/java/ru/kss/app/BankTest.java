@@ -1,6 +1,7 @@
 package ru.kss.app;
 
 import org.junit.Test;
+import ru.kss.bank.Bank;
 import ru.kss.clients.Juridical;
 import ru.kss.clients.exceptions.ClientExistsException;
 

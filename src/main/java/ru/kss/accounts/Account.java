@@ -2,6 +2,7 @@ package ru.kss.accounts;
 
 import org.slf4j.LoggerFactory;
 import ru.kss.accounts.exceptions.IncorrectAccountNumberException;
+import ru.kss.accounts.exceptions.NoSuchMoneyException;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -16,6 +17,7 @@ public class Account {
     private Calendar openDate;
     private Date closeDate;
     private UUID ownerId, accountId;
+    private int summ;
     private boolean actual;
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -29,6 +31,7 @@ public class Account {
         this.openDate = openDate;
         this.ownerId = ownerId;
         this.accountId = UUID.randomUUID();
+        this.summ = 0;
         this.actual = true;
 
         logger.info("Account " + accountNumber + " was added!");
@@ -54,8 +57,26 @@ public class Account {
         return accountId;
     }
 
+    public int getSumm() {
+        return summ;
+    }
+
+    public boolean isActual() {
+        return actual;
+    }
+
     public static int getCounter() {
         return counter;
+    }
+/*TODO*/
+    public boolean recalcSumm(int summ, Account account) throws NoSuchMoneyException {
+        if (this.summ<summ) {
+            throw new NoSuchMoneyException("Account " + this.accountNumber + " doesn't have enough money!", account);
+        }
+        else {
+            this.summ = this.summ + summ;
+            return true;
+        }
     }
 
     @Override
@@ -66,6 +87,7 @@ public class Account {
                 "\n, closeDate=" + closeDate +
                 "\n, ownerId=" + ownerId +
                 "\n, accountId=" + accountId +
+                "\n, summ=" + summ +
                 "\n, actual=" + actual +
                 '}';
     }
