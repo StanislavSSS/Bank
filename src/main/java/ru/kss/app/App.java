@@ -3,12 +3,14 @@ package ru.kss.app;
 import ru.kss.accounts.Account;
 import ru.kss.accounts.exceptions.IncorrectAccountNumberException;
 import ru.kss.clients.Juridical;
+import ru.kss.clients.exceptions.ClientExistsException;
 
 /**
  * @author sk10271
  */
 public class App {
     public static void main(String[] args){
+        Bank bank = new Bank();
         Juridical juridical = new Juridical("Joyetech", false, "Vapes");
 
         try {
@@ -18,8 +20,9 @@ public class App {
         }
 
         try {
-            juridical.addAccount("407028100001000000011");
-        } catch (IncorrectAccountNumberException e) {
+            boolean b = bank.addClient(juridical);
+        } catch (ClientExistsException e) {
+            System.out.println(e.getExceptionMessage());
             e.printStackTrace();
         }
 
