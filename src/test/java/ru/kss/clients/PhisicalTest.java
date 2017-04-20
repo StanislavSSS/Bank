@@ -16,7 +16,7 @@ public class PhisicalTest {
     public void createPhisicalTestGood() throws IncorrectAccountNumberException {
         Phisical phisical = new Phisical("Vladimir", "Volfovich", "Zhirinovsky",
                                          true, "Russia", "Moscow");
-        assertTrue(phisical.addAccount("01234567890123456789"));
+        assertTrue(phisical.addAccount("01234567890123456789", 100000));
     }
 
     @Rule
@@ -28,6 +28,6 @@ public class PhisicalTest {
 
         thrown.expect(IncorrectAccountNumberException.class);
 
-        assertFalse(phisical.addAccount("012345678901234567891"));
+        assertFalse(phisical.addAccount("012345678901234567891", 100000));
     }
 }

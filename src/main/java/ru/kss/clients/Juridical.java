@@ -15,7 +15,7 @@ public class Juridical extends Client {
     public Juridical(String name, boolean resident, String typeOfBusiness) {
         super(name, resident);
         this.typeOfBusiness = typeOfBusiness;
-        logger.info("Juridical client " + name + "was added!");
+        logger.info("Juridical client " + name + " was added!");
     }
 
 

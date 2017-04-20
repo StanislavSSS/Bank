@@ -14,7 +14,7 @@ public class JuridicalTest {
         Juridical juridical = new Juridical("Joyetech", false, "Vapes");
 
         try {
-            juridical.addAccount("40702810000100000001");
+            juridical.addAccount("40702810000100000001", 100000);
         } catch (IncorrectAccountNumberException e) {
             e.printStackTrace();
         }
@@ -29,6 +29,6 @@ public class JuridicalTest {
 
         thrown.expect(IncorrectAccountNumberException.class);
 
-        juridical.addAccount("407028100001000000012");
+        juridical.addAccount("407028100001000000012", 100000);
     }
 }

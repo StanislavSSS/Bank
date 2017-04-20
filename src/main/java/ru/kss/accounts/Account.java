@@ -1,5 +1,6 @@
 package ru.kss.accounts;
 
+import org.jetbrains.annotations.Contract;
 import org.slf4j.LoggerFactory;
 import ru.kss.accounts.exceptions.IncorrectAccountNumberException;
 import ru.kss.accounts.exceptions.NoSuchMoneyException;
@@ -21,7 +22,7 @@ public class Account {
     private boolean actual;
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
 
-    public Account(String accountNumber, Calendar openDate, UUID ownerId, UUID accountId) throws IncorrectAccountNumberException {
+    public Account(String accountNumber, Calendar openDate, UUID ownerId, UUID accountId, int summ) throws IncorrectAccountNumberException {
         int length = accountNumber.length();
         if (!(length == 20))
             throw new IncorrectAccountNumberException("Length of account number should be only 20", accountNumber, length);
@@ -31,7 +32,7 @@ public class Account {
         this.openDate = openDate;
         this.ownerId = ownerId;
         this.accountId = UUID.randomUUID();
-        this.summ = 0;
+        this.summ = summ;
         this.actual = true;
 
         logger.info("Account " + accountNumber + " was added!");
@@ -65,6 +66,7 @@ public class Account {
         return actual;
     }
 
+    @Contract(pure = true)
     public static int getCounter() {
         return counter;
     }

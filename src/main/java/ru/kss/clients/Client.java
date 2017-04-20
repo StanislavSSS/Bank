@@ -1,5 +1,6 @@
 package ru.kss.clients;
 
+import org.jetbrains.annotations.Contract;
 import ru.kss.accounts.Account;
 import ru.kss.accounts.exceptions.IncorrectAccountNumberException;
 
@@ -57,12 +58,13 @@ public abstract class Client {
         return accounts;
     }
 
+    @Contract(pure = true)
     public static int getCounter() {
         return counter;
     }
 
-    public boolean addAccount(String accountNumber) throws IncorrectAccountNumberException {
-        Account account = new Account(accountNumber, Calendar.getInstance(), getClientId(), UUID.randomUUID());
+    public boolean addAccount(String accountNumber, int summ) throws IncorrectAccountNumberException {
+        Account account = new Account(accountNumber, Calendar.getInstance(), getClientId(), UUID.randomUUID(), summ);
         if (this.getAccounts().contains(account))
             return false;
         else
